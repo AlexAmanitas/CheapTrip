@@ -34,7 +34,8 @@ export class ErrorInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     return next.handle(req).pipe(
       tap((evt) => {
-       if (evt instanceof HttpResponse) {
+          if (evt instanceof HttpResponse) {
+           console.log(evt)
           if (evt.body.length == 0) {
             const alertMessage = new AlertMessage('warning', $localize`:@@oh,no:Oh no!`,
              $localize`:@@noRoute:Sorry, the data we have accumulated is nots
@@ -50,7 +51,8 @@ export class ErrorInterceptor implements HttpInterceptor {
         let errorData: AlertMessage;
        // console.log ("--==unknown error==-- "+error)
         switch (true) {
-          case error.status >= 400:
+            case error.status === 404:
+                console.log(error)
             errorData = new AlertMessage('warning', $localize`:@@oh,no:Oh no!`,
             $localize`:@@noRoute:Sorry, the data we have accumulated is not
              enough to build a route between the indicated cities. Try changing your request.`,
