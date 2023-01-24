@@ -51,7 +51,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         let errorData: AlertMessage;
        // console.log ("--==unknown error==-- "+error)
         switch (true) {
-            case error.status === 404:
+            case error.status >= 400:
                 console.log(error)
             errorData = new AlertMessage('warning', $localize`:@@oh,no:Oh no!`,
             $localize`:@@noRoute:Sorry, the data we have accumulated is not
